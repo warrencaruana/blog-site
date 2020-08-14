@@ -14,7 +14,9 @@ RUN yarn install
 RUN gatsby build
 
 FROM gatsbyjs/gatsby:onbuild as build
-COPY public /pub
+# COPY public /pub
+
+# CMD gatsby develop --host 0.0.0.0
 
 
 # EXPOSE 80
