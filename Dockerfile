@@ -11,7 +11,7 @@ RUN yarn install
 # COPY gatsby-config.js .
 
 # RUN gatsby -v
-RUN gatsby build
+# RUN gatsby build
 
 FROM gatsbyjs/gatsby:onbuild as build
 # COPY public /pub
