@@ -4,8 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Loggin to Amazon ECR
-      - aws --version
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 864368950022.dkr.ecr.us-east-1.amazonaws.com
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       - REPOSITORY_URI=864368950022.dkr.ecr.us-east-1.amazonaws.com/blog-site
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
@@ -21,4 +20,3 @@ phases:
       - echo Pushing the Docker image....
       - docker push 864368950022.dkr.ecr.us-east-1.amazonaws.com/blog-site:latest
       - echo Writing image definitions file
-      - printf 
